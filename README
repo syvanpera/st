@@ -1,0 +1,52 @@
+st - simple terminal
+--------------------
+st is a simple terminal emulator for X which sucks less.
+
+
+Requirements
+------------
+In order to build st you need the Xlib header files.
+
+
+Patches
+-------
+Apply patches using the `quilt` tool:
+```bash
+$ quilt push -a
+```
+
+ If you'd like to make changes and have them be added as new patches, use quilt:
+
+```bash
+$ quilt new my-change.patch  # create a new empty patch
+$ quilt add config.def.h     # tell quilt that config.def.h is part of your new patch
+$ vim config.def.h           # Make whatever changes you like
+$ quilt refresh	             # tell quilt to refresh the patch based on your file changes
+$ quilt pop -a               # roll all the changes back to the original source
+```
+
+
+Installation
+------------
+Edit config.mk to match your local setup (st is installed into
+the /usr/local namespace by default).
+
+Afterwards enter the following command to build and install st (if
+necessary as root):
+
+    make clean install
+
+
+Running st
+----------
+If you did not install st with make clean install, you must compile
+the st terminfo entry with the following command:
+
+    tic -sx st.info
+
+See the man page for additional details.
+
+Credits
+-------
+Based on Aurélien APTEL <aurelien dot aptel at gmail dot com> bt source code.
+
